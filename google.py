@@ -11,8 +11,8 @@ class Google(QMainWindow):
         self.setFixedSize(1150, 550)
         self.setStyleSheet("background-color:#fefefa ")
         self.top_buttons()
-        self.google_name()
-        # self.name_image()
+        # self.google_name()
+        self.name_image()
         self.search_area()
 
     def name_image(self):

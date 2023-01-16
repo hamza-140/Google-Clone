@@ -21,7 +21,7 @@ class Google(QMainWindow):
         label.setPixmap(pixmap)
         label.setFixedSize(280,90)
         label.setFixedHeight(92)
-        label.move(400,120)
+        label.move(450,120)
 
     def google_name(self):
         g = QLabel('G', self)
@@ -57,7 +57,7 @@ class Google(QMainWindow):
 
     def search_area(self):
         self.search_box = QTextEdit(self)
-        self.search_box.setGeometry(300, 240, 500, 40)
+        self.search_box.setGeometry(330, 240, 500, 40)
         search_button = QPushButton("Google Search", self)
         search_button.setStyleSheet("border-radius:5px;background-color:#f8f9fa")
         search_button.setGeometry(420, 300, 120, 30)

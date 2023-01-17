@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import *
 import sys
 from PyQt6.QtGui import *
-
+from PyQt6.QtCore import *
 
 class Google(QMainWindow):
     def __init__(self):
@@ -14,6 +14,7 @@ class Google(QMainWindow):
         # self.google_name()
         self.name_image()
         self.search_area()
+        self.search_icon()
 
     def name_image(self):
         label = QLabel(self)
@@ -22,6 +23,13 @@ class Google(QMainWindow):
         label.setFixedSize(280,90)
         label.setFixedHeight(92)
         label.move(450,120)
+
+    def search_icon(self):
+        label = QLabel(self)
+        pixmap = QPixmap('search-icon.png')
+        label.setPixmap(pixmap)
+        label.setFixedSize(20,20)
+        label.move(800,250)
 
     def google_name(self):
         g = QLabel('G', self)
@@ -56,7 +64,8 @@ class Google(QMainWindow):
         # e.setGeometry(720, 100, 40, 60)
 
     def search_area(self):
-        self.search_box = QTextEdit(self)
+        self.search_box = QPlainTextEdit(self)
+        self.search_box.textChanged.connect(self.search_area)
         self.search_box.setGeometry(330, 240, 500, 40)
         search_button = QPushButton("Google Search", self)
         search_button.setStyleSheet("border-radius:5px;background-color:#f8f9fa")
@@ -66,6 +75,15 @@ class Google(QMainWindow):
         feeling_button.setStyleSheet("border-radius:5px;background-color:#f8f9fa")
         search_button.clicked.connect(self.testing)
         self.search_box.setStyleSheet("border: 0.6px solid rgba(0,0,0,.3);border-radius:10px")
+
+    def txtInputChanged(self):
+        if self.search_box.toPlainText().length() > 5:
+            text = self.search_box.toPlainText()
+            text = text[:5]
+            self.search_box.setPlainText(text)
+            self.cursor = self.search_box.textCursor()
+        self.cursor.setPosition(5)
+        self.search_box.setTextCursor(self.cursor)
 
     def testing(self):
         print(self.search_box.toPlainText())

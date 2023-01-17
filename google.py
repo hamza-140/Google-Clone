@@ -2,11 +2,14 @@ from PyQt6.QtWidgets import *
 import sys
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
+from PyQt5.QtCore import Qt as Qt5
+
 
 class Google(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.search_box = None
+        self.widget = QWidget()
         self.setWindowTitle("Google")
         self.setFixedSize(1150, 550)
         self.setStyleSheet("background-color:#fefefa ")
@@ -20,21 +23,21 @@ class Google(QMainWindow):
         label = QLabel(self)
         pixmap = QPixmap('google.png')
         label.setPixmap(pixmap)
-        label.setFixedSize(280,90)
+        label.setFixedSize(280, 90)
         label.setFixedHeight(92)
-        label.move(450,120)
+        label.move(450, 120)
 
     def search_icon(self):
         label = QLabel(self)
         pixmap = QPixmap('search-icon.png')
         label.setPixmap(pixmap)
-        label.setFixedSize(20,20)
-        label.move(800,250)
+        label.setFixedSize(20, 20)
+        label.move(800, 250)
 
     def google_name(self):
         g = QLabel('G', self)
         g.setStyleSheet("color: blue")
-        g.move(350,120)
+        g.move(350, 120)
         g.setFixedHeight(50)
         # g.setGeometry(350, 0, 60, 40)
         o1 = QLabel('o', self)
@@ -89,13 +92,19 @@ class Google(QMainWindow):
         print(self.search_box.toPlainText())
 
     def top_buttons(self):
-        gmail = QLabel("Gmail",self)
-        gmail.setStyleSheet("font-size:13px;font-weight:normal;color:rgba(0,0,0,.87)")
-        gmail.move(1000,5)
-        gmail.setObjectName("label")
-        image = QLabel("Images", self)
-        image.setStyleSheet("font-size:13px;font-weight:normal;color:rgba(0,0,0,.87)")
-        image.move(1050, 5)
+        menu_bar = self.menuBar()
+        menu_bar.addMenu("Gmail")
+        menu_bar.addMenu("Images")
+        options_label = QLabel(self)
+        options = QPixmap('options.png')
+        options_label.setPixmap(options)
+        options_label.move(1070, 10)
+        profile_img = QPixmap("mine.jpg")
+        profile_label = QLabel(self)
+        profile_label.setFixedSize(32, 32)
+        profile_label.move(1100, 10)
+        profile_label.setPixmap(profile_img)
+        menu_bar.setStyleSheet("padding-left:950px;padding-top:15px;")
 
 
 app = QApplication([])

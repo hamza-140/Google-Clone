@@ -5,10 +5,6 @@
 
 - 📺 Sample Output:
 
-![image](https://user-images.githubusercontent.com/80567400/212492818-63a7f244-754e-4bb5-a61a-5399e2f5c333.png)
-
-
-
 
 <br>
 <h1 align="center">Hi 👋, I'm SYED ALI HAMZA SHAH</h1>

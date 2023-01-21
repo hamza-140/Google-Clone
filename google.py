@@ -1,27 +1,26 @@
+import webbrowser
 from PyQt6.QtWidgets import *
 import sys
 from PyQt6.QtGui import *
-from PyQt6.QtCore import *
-from PyQt5.QtCore import Qt as Qt5
 
 
 class Google(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
+        self.setWindowIcon(QIcon('images/google-logo.png'))
         self.search_box = None
         self.widget = QWidget()
         self.setWindowTitle("Google")
         self.setFixedSize(1150, 550)
         self.setStyleSheet("background-color:#fefefa ")
         self.top_buttons()
-        # self.google_name()
         self.name_image()
         self.search_area()
         self.search_icon()
 
     def name_image(self):
         label = QLabel(self)
-        pixmap = QPixmap('google.png')
+        pixmap = QPixmap('images/google.png')
         label.setPixmap(pixmap)
         label.setFixedSize(280, 90)
         label.setFixedHeight(92)
@@ -29,77 +28,39 @@ class Google(QMainWindow):
 
     def search_icon(self):
         label = QLabel(self)
-        pixmap = QPixmap('search-icon.png')
+        pixmap = QPixmap('images/search-icon.png')
         label.setPixmap(pixmap)
         label.setFixedSize(20, 20)
         label.move(800, 250)
 
-    def google_name(self):
-        g = QLabel('G', self)
-        g.setStyleSheet("color: blue")
-        g.move(350, 120)
-        g.setFixedHeight(50)
-        # g.setGeometry(350, 0, 60, 40)
-        o1 = QLabel('o', self)
-        o1.setStyleSheet("color: red")
-        o1.move(430, 120)
-        o1.setFixedHeight(50)
-        # o.setGeometry(430, 100, 50, 60)
-        o = QLabel('o', self)
-        o.setStyleSheet("color: yellow")
-        o.move(510, 120)
-        o.setFixedHeight(50)
-        # o.setGeometry(510, 100, 50, 60)
-        g1 = QLabel('g', self)
-        g1.setStyleSheet("color: blue")
-        g1.move(590, 110)
-        g1.setFixedHeight(80)
-        # g.setGeometry(590, 100, 40, 70)
-        l = QLabel('l', self)
-        l.setStyleSheet("color: green")
-        l.move(670, 120)
-        l.setFixedHeight(50)
-        # l.setGeometry(670, 100, 40, 60)
-        e = QLabel('e', self)
-        e.setStyleSheet("color: red")
-        e.move(720, 120)
-        e.setFixedHeight(50)
-        # e.setGeometry(720, 100, 40, 60)
-
     def search_area(self):
         self.search_box = QPlainTextEdit(self)
-        self.search_box.textChanged.connect(self.search_area)
         self.search_box.setGeometry(330, 240, 500, 40)
         search_button = QPushButton("Google Search", self)
+        search_button.clicked.connect(self.search)
         search_button.setStyleSheet("border-radius:5px;background-color:#f8f9fa")
-        search_button.setGeometry(420, 300, 120, 30)
+        search_button.setGeometry(450, 300, 120, 30)
         feeling_button = QPushButton("I'm Feeling Lucky", self)
-        feeling_button.setGeometry(580, 300, 120, 30)
+        feeling_button.clicked.connect(self.feeling)
+        feeling_button.setGeometry(610, 300, 120, 30)
         feeling_button.setStyleSheet("border-radius:5px;background-color:#f8f9fa")
-        search_button.clicked.connect(self.testing)
         self.search_box.setStyleSheet("border: 0.6px solid rgba(0,0,0,.3);border-radius:10px")
 
-    def txtInputChanged(self):
-        if self.search_box.toPlainText().length() > 5:
-            text = self.search_box.toPlainText()
-            text = text[:5]
-            self.search_box.setPlainText(text)
-            self.cursor = self.search_box.textCursor()
-        self.cursor.setPosition(5)
-        self.search_box.setTextCursor(self.cursor)
+    def search(self):
+        webbrowser.open('https://www.google.com/search?q=' + self.search_box.toPlainText())
 
-    def testing(self):
-        print(self.search_box.toPlainText())
+    def feeling(self):
+        webbrowser.open('https://www.google.com/doodles')
 
     def top_buttons(self):
         menu_bar = self.menuBar()
         menu_bar.addMenu("Gmail")
         menu_bar.addMenu("Images")
         options_label = QLabel(self)
-        options = QPixmap('options.png')
+        options = QPixmap('images/options.png')
         options_label.setPixmap(options)
         options_label.move(1070, 10)
-        profile_img = QPixmap("mine.jpg")
+        profile_img = QPixmap("images/mine.png")
         profile_label = QLabel(self)
         profile_label.setFixedSize(32, 32)
         profile_label.move(1100, 10)
